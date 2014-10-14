@@ -1,0 +1,28 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=5037
+
+Vim SELinux suite is a collection of vim scripts to help you write SELinux policy modules.
+It is composed of:
+ - highlight syntax files for the SELinux filetypes;
+ - a snippets file to use with the 'SnipMate' plugin (vimscript#2540). 
+ - an utility (a filetype plugin) called 'setool'.
+
+The setool utility lists all the SELinux interfaces/definitions/templates found on the system (On redhat/fedora, it is in the directory /usr/share/selinux/devel/include, provided by the package selinux-policy-devel), ordered by type, in a sidebar window.
+The listings are built at runtime when they are first required (by unfolding or using one of the provided functions), and show each interface name, parameters and summary.
+This help the user to choose which interface to use. The user can jump to the interface definition by double-clicking if he wants to inspect it.
+
+This plugin also sets the variables makeprg and errorformat, so you can use the command ':make' to build a module. If an error is detected, the cursor position will be set to the corresponding line.
+
+The plugin exposes three functions:
+ - SEToolToggle() to show/hide the setool window;
+ - SEToolSearch() to search the definition of the word under the cursor. If the word is found, the corresponding file is opened and setool is set to its position.
+ - SEToolFind('word') to search for the given word instead of the word under the cursor.
+
+The plugin defines some convenient keymaps for the buffers, to avoid calling the functions manually. They are written in the help menu of the setool window (press <F1> in setool).
+
+Notes:
+ - the setool window uses UTF8 characters as fold icons;
+ - use the usual <Ctrl>C to stop an operation, for instance if a cache takes to much time to build;
+ - do not try to unfold 'corenetwork.if': it contains too many interfaces and the cache takes to much time to build. Just double-click to open the file, and use the command 'setl fdm=expr' to fold.
+ - the setool window always starts with everything folded, even when toggled off/on. It is the expected behavior.
+
+
